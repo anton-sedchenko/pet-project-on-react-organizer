@@ -1,0 +1,51 @@
+.tasks-table {
+    text-align: center;
+    border-collapse: collapse;
+    width: 1000px;
+    margin: 0 auto 50px;
+}
+
+.tasks-table__cell {
+    border: 1px solid white;
+    padding: 10px;
+    overflow: auto;
+    word-wrap: break-word;
+    position: relative;
+    overflow: visible;
+}
+
+.tasks-table__cell:nth-child(1) {
+    width: 40px;
+}
+
+.tasks-table__cell:nth-child(2) {
+    max-width: 340px;
+}
+
+.tasks-table__cell:nth-child(3) {
+    width: 240px;
+}
+
+.tasks-table__cell:nth-child(4) {
+    width: 180px;
+}
+
+.tasks-table__cell:nth-child(5) {
+    width: 200px;
+}
+
+.tasks-table__points-value {
+    margin-right: 15px;
+}
+
+.tasks-table__cell-points-done {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.no-tasks-msg {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 50px;
+}

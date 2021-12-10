@@ -1,0 +1,10 @@
+.add-task-form {
+    width: 300px;
+}
+
+.add-task-form-select {
+    width: 100%;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    border: 1px solid teal;
+}

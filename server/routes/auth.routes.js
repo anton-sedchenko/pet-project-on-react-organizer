@@ -1,11 +1,13 @@
 import Router from 'express';
 import userDetails from '../models/User.js';
+import config from 'config';
 import bcrypt from 'bcryptjs';
 import {check, validationResult} from 'express-validator';
+import jwt from "jsonwebtoken";
 
 const router = new Router();
 
-export default router.post('/registration',
+router.post('/registration',
     [
         check('email', "Incorrect email").isEmail(),
         check('password', "Incorrect password").isLength({min: 3, max: 12})
@@ -26,7 +28,7 @@ export default router.post('/registration',
                 return res.status(400).json({message: `User with such ${email} already exists`})
             }
             //    if no, then create and save new user
-            const hashPassword = await bcrypt.hash(password, 15);
+            const hashPassword = await bcrypt.hash(password, 8);
             const user = new userDetails({email, password: hashPassword});
             await user.save();
 
@@ -36,3 +38,39 @@ export default router.post('/registration',
         }
     }
 )
+
+router.post('/login',
+    async (req, res) => {
+        try {
+            const {email, password} = req.body;
+            const user = await userDetails.findOne({email});
+
+            if (!user) {
+                return res.status(404).json({message: "User not found"});
+            }
+            //    if user found, check if passwords are equal
+            const isPassValid = bcrypt.compareSync(password, user.password);
+
+            if (!isPassValid) {
+                return res.status(400).json({message: "Invalid password"});
+            }
+            const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
+
+            return res.json({
+                token,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    diskSpace: user.diskSpace,
+                    usedSpace: user.usedSpace,
+                    avatar: user.avatar
+                }
+            })
+        } catch (e) {
+            console.log(e);
+            res.send({message: "server error"});
+        }
+    }
+)
+
+export default router;

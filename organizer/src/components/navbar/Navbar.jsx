@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Menu, Row, Col } from 'antd';
-import { LoginOutlined, UnorderedListOutlined, CloudOutlined, DollarCircleOutlined } from '@ant-design/icons';
+import { LoginOutlined, ProfileOutlined, UnorderedListOutlined, CloudOutlined, DollarCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { routeNames } from '../../router';
 
@@ -38,17 +38,27 @@ const Navbar = () => {
                         </Menu>
                     </Col>
                     :
-                    <Col span={3}>
+                    <Col span={6}>
                         <Menu mode="horizontal" selectable={false} style={{ justifyContent: 'flex-end' }}>
                             <Menu.Item
                                 onClick={() => {
-                                    dispatch({ type: 'SET_AUTH', payload: true });
-                                    navigate(routeNames.TASKS);
+                                    // dispatch({ type: 'SET_AUTH', payload: true });
+                                    navigate(routeNames.LOGIN);
                                 }}
                                 key="login"
                                 icon={<LoginOutlined />}
                             >
                                 Login
+                            </Menu.Item>
+                            <Menu.Item
+                                onClick={() => {
+                                    // dispatch({ type: 'SET_AUTH', payload: true });
+                                    navigate(routeNames.REGISTRATION);
+                                }}
+                                key="registration"
+                                icon={<ProfileOutlined />}
+                            >
+                                Registration
                             </Menu.Item>
                         </Menu>
                     </Col>

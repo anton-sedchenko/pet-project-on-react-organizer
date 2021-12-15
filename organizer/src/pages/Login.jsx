@@ -14,6 +14,7 @@ const Login = () => {
                     <div style={{ textAlign: "center", marginBottom: '50px' }}>
                         <h1>Welcome to the organizer app!</h1>
                         <h3>Take control of your life and be super productive!</h3>
+                        <h2>Login form</h2>
                     </div>
                     <LoginForm />
                 </Space>

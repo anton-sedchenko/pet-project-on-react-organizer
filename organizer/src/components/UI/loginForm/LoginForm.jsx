@@ -5,9 +5,9 @@ const LoginForm = () => {
     return (
         <Form justify="center">
             <Form.Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
+                label="Login"
+                name="login"
+                rules={[{ required: true, message: 'Please input your login!' }]}
             >
                 <Input />
             </Form.Item>

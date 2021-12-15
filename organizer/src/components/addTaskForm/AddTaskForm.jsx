@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ButtonDefault from '../UI/button/ButtonDefault';
-import InputDefault from '../UI/input/InputDefault';
+import InputDefault from '../UI/input/Input';
 import './AddTaskForm.css';
 import { useDispatch } from "react-redux";
 

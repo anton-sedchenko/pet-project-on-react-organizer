@@ -4,6 +4,8 @@ import config from 'config';
 import bcrypt from 'bcryptjs';
 import {check, validationResult} from 'express-validator';
 import jwt from "jsonwebtoken";
+import authMiddleware from '../middleware/auth.middleware.js';
+import {routeNames} from "../../organizer/src/router";
 
 const router = new Router();
 
@@ -54,6 +56,29 @@ router.post('/login',
             if (!isPassValid) {
                 return res.status(400).json({message: "Invalid password"});
             }
+            const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
+
+            return res.json({
+                token,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    diskSpace: user.diskSpace,
+                    usedSpace: user.usedSpace,
+                    avatar: user.avatar
+                }
+            })
+        } catch (e) {
+            console.log(e);
+            res.send({message: "server error"});
+        }
+    }
+)
+
+router.get('/auth', authMiddleware,
+    async (req, res) => {
+        try {
+            const user = await userDetails.findOne({_id: req.user.id});
             const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
 
             return res.json({

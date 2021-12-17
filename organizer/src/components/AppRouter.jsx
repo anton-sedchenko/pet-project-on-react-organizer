@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Tasks from "../pages/Tasks";
 import Weather from "../pages/Weather";
 import Currency from "../pages/Currency";

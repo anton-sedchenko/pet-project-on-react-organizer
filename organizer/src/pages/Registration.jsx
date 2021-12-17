@@ -3,6 +3,7 @@ import { Layout, Row, Space } from 'antd';
 import Input from '../components/UI/input/Input';
 import Button from '../components/UI/button/ButtonDefault';
 import { registration } from '../actions/user';
+import './Login.css';
 
 const Registration = () => {
     const [email, setEmail] = useState("");
@@ -18,9 +19,11 @@ const Registration = () => {
                         <h2>Registration form</h2>
                     </div>
                     <div className="auth-form">
-                        <Input value={email} setValue={setEmail} type="text" placeholder="*Enter email" />
-                        <Input value={password} setValue={setPassword} type="text" placeholder="*Enter password" />
-                        <Button className="registration-btn" onClick={() => registration(email, password)}>Register</Button>
+                        <div className="auth-form__content-wrapper">
+                            <Input value={email} setValue={setEmail} type="text" placeholder="*Enter email" />
+                            <Input value={password} setValue={setPassword} type="text" placeholder="*Enter password" />
+                            <Button onClick={() => registration(email, password)}>Register</Button>
+                        </div>
                     </div>
                 </Space>
             </Row>

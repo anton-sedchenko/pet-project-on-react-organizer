@@ -13,9 +13,9 @@ const RequireAuth = ({ children }) => {
        dispatch(auth());
     }, []);
 
-    if (!isAuth) {
-        return <Navigate to={routeNames.LOGIN} state={{from: location}} />
-    }
+    // if (!isAuth) {
+    //     return <Navigate to={routeNames.LOGIN} state={{from: location}} />
+    // }
 
     return children;
 };

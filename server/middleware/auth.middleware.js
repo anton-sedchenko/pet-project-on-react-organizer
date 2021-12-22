@@ -12,7 +12,7 @@ export default (req, res, next) => {
         if (!token) {
             return res.status(401).json({message: 'Auth error'});
         }
-        const decoded = jwt.verify(token, config.get('sevretKey'));
+        const decoded = jwt.verify(token, config.get('secretKey'));
         req.user = decoded;
         next();
     } catch (e) {
